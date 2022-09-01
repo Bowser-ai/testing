@@ -1,10 +1,13 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 import time
 import unittest
 
+from django.test import LiveServerTestCase
 
-class NewVisitorTest(unittest.TestCase):
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+
+class NewVisitorTest(LiveServerTestCase):
     def setUp(self) -> None:
         options = webdriver.ChromeOptions()
         options.binary_location = '/usr/bin/brave'
@@ -22,7 +25,7 @@ class NewVisitorTest(unittest.TestCase):
         )
 
     def test_can_start_a_list_and_retrieve_it_later(self) -> None:
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
         self.assertIn('To-Do lists', self.browser.title)
         header_text = self.browser.find_element_by_tag_name('h1').text
         self.assertIn('To-Do', header_text)
@@ -48,6 +51,3 @@ class NewVisitorTest(unittest.TestCase):
             '2: Use peacock feathers to make a fly'
         )
 
-
-if __name__ == '__main__':
-    unittest.main()
