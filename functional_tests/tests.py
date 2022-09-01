@@ -12,9 +12,9 @@ MAX_WAIT = 10
 
 class NewVisitorTest(LiveServerTestCase):
     def setUp(self) -> None:
-        options = webdriver.ChromeOptions()
-        options.binary_location = '/usr/bin/brave'
-        self.browser = webdriver.Chrome(options=options)
+        self.options = webdriver.ChromeOptions()
+        self.options.binary_location = '/usr/bin/brave'
+        self.browser = webdriver.Chrome(options=self.options)
 
     def tearDown(self) -> None:
         self.browser.quit()
@@ -73,7 +73,7 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertRegex(edith_list_url, '/lists/.+')
 
         self.browser.quit()
-        self.browser = webdriver.Chrome()
+        self.browser = webdriver.Chrome(options=self.options)
 
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text

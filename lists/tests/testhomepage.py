@@ -25,15 +25,8 @@ class TestHomePage(TestCase):
         response = self.client.post('/', data={'item_text': 'A new list item'})
 
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response['location'], '/')
+        self.assertEqual(response['location'], '/lists/only-list-in-the-world')
 
     def test_only_save_items_when_necessary(self) -> None:
         self.client.get('/')
         self.assertEqual(Item.objects.count(), 0)
-
-    def test_multiple_list_items_are_visible_on_home_page(self) -> None:
-        Item.objects.create(text='item_1')
-        Item.objects.create(text='item_2')
-        response = self.client.get('/')
-        self.assertIn('item_1', response.content.decode())
-        self.assertIn('item_2', response.content.decode())
