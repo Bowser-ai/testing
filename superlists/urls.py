@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from lists.views import home_page, view_list
+from lists.views import home_page, view_list, new_list, add_item
 
 urlpatterns = [
     url(r'^$', home_page, name='home_page'),
-    url(r'lists/only-list-in-the-world/$', view_list, name='view_list'),
+    url(r'lists/(\d+)/$', view_list, name='view_list'),
+    url(r'lists/new/$', new_list, name='new_list'),
+    url(r'lists/(\d+)/add-item/$', add_item, name='add_item'),
 ]
