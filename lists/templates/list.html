@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block header_text %}
+    Your To-Do list
+{% endblock %}
+{% block form_action %} 
+    /lists/{{ list.id }}/add-item/
+{% endblock %}
+
+{% block table %}
+    <table id="id_list_table">
+        {% for item in list.items.all %}
+            <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}
