@@ -1,3 +1,4 @@
+import os
 import time
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
@@ -15,6 +16,9 @@ class NewVisitorTest(StaticLiveServerTestCase):
         self.options = webdriver.ChromeOptions()
         self.options.binary_location = '/usr/bin/brave'
         self.browser = webdriver.Chrome(options=self.options)
+        staging_server = os.environ.get('STAGING_SERVER')
+        if staging_server:
+            self.live_server_url = f'http://{staging_server}'
 
     def tearDown(self) -> None:
         self.browser.quit()
