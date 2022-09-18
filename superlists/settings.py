@@ -25,8 +25,11 @@ SECRET_KEY = 'y&qaqg+%6wf2j&h2f&a@b44_rs%ox@q#%ppke@#j3viftvn%k-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['staging.superlists.monster', '70.34.214.78']
-
+ALLOWED_HOSTS = [
+    'superlists.monster',
+    'staging.superlists.monster',
+    '70.34.214.78'
+]
 
 # Application definition
 
