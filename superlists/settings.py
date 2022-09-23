@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'superlists.monster',
     'staging.superlists.monster',
-    '70.34.214.78'
+    'localhost'
 ]
 
 # Application definition
